@@ -8,7 +8,11 @@ from routers import auth, feedparser
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+@app.get("/")
+def root():
+    return {"message": "Your app is deployed successfully!"}
 
+    
 app.include_router(auth.route)
 app.include_router(feedparser.route)
 
