@@ -19,7 +19,7 @@ AUTH0_DOMAIN = "dev-1w0lpybkl5mp5ht8.us.auth0.com"
 API_AUDIENCE = "https://myapiexample.com"
 CLIENT_ID = "NCLoOY1Wuh7c70kPNv8SrLoxSHOEseQO"
 CLIENT_SECRET = "WVf-ohg-Jbf5Z213SFkzIituGqPqVWMqlBwqvE0carPXsyDY048OlZjsuzBpSWjv"
-REDIRECT_URI = "http://localhost:8000/token"
+REDIRECT_URI = "https://feed-parser-api.onrender.com/token"
 
 # Fetch JWKS keys from Auth0
 jwks_url = f"https://{AUTH0_DOMAIN}/.well-known/jwks.json"
