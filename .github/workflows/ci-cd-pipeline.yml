@@ -1,0 +1,47 @@
+name: FastAPI CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}  # From GitHub Secrets
+  AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+  RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-cov httpx
+
+      - name: Run tests (mock Auth0)
+        run: |
+          pytest --cov=app tests/ -v
+
+  deploy:
+    needs: test  # Only deploy if tests pass
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Render CLI
+        run: |
+          curl -sf https://render.com/downloads/render-cli/install.sh | sh
+          echo "$HOME/.render/bin" >> $GITHUB_PATH
+
+      - name: Deploy to Render
+        run: |
+          render-cli services update $RENDER_SERVICE_ID --auto-deploy
