@@ -22,10 +22,10 @@ jobs:
         with:
           python-version: "3.12.10"
 
-      - name: Install dependencies
+      - name: Install project
         run: |
           pip install -e .
-          pip install -r requirements.txt 
+          pip install pytest pytest-cov 
 
       - name: Run tests
         run: |
