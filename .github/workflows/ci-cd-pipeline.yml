@@ -17,19 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python 3.10
+      - name: Set up Python 3.12
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.12"
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install pytest pytest-cov httpx
+          pip install -e .
+          pip install -r requirements.txt pytest pytest-cov
 
-      - name: Run tests (mock Auth0)
+      - name: Run tests
         run: |
-          pytest --cov=app tests/ -v
+          python -m pytest --cov=app tests/ -v
 
   deploy:
     needs: test  # Only deploy if tests pass
