@@ -1,5 +1,3 @@
-# In your project root:
-cat > pyproject.toml <<EOF
 [build-system]
 requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
@@ -7,13 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "feed_parser_api"
 version = "0.1.0"
-authors = [{name = "Sankalp Kashiv", email = "sankalpkashiv0@gmail.com"}]
 description = "FastAPI Feed Parser API"
-readme = "README.md"
-requires-python = ">=3.12.10"
+authors = [{ name = "Sankalp Kashiv" }]
+requires-python = ">=3.10"
 dependencies = [
     "fastapi",
     "uvicorn",
-    # Add other dependencies from requirements.txt
+    "pytest",
+    "httpx"
 ]
-EOF

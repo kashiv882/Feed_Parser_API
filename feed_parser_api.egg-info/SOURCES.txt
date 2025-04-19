@@ -1,0 +1,9 @@
+pyproject.toml
+feed_parser_api.egg-info/PKG-INFO
+feed_parser_api.egg-info/SOURCES.txt
+feed_parser_api.egg-info/dependency_links.txt
+feed_parser_api.egg-info/requires.txt
+feed_parser_api.egg-info/top_level.txt
+routers/auth.py
+routers/feedparser.py
+tests/test_auth.py
