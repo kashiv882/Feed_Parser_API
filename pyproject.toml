@@ -3,14 +3,7 @@ requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "feed_parser_api"
+name = "feed-parser"
 version = "0.1.0"
 description = "FastAPI Feed Parser API"
-authors = ["Sankalp Kashiv"]
 requires-python = ">=3.10"
-dependencies = [
-    "fastapi",
-    "uvicorn",
-    "pytest",
-    "httpx"
-]
