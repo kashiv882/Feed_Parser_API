@@ -24,6 +24,7 @@ jobs:
 
       - name: Install project
         run: |
+          pip install -r requirements
           pip install -e .
           pip install pytest pytest-cov 
 
