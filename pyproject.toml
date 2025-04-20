@@ -1,15 +1,19 @@
 [build-system]
-requires = ["setuptools>=42"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "feed_parser_api"
+name = "feed_parser"
 version = "0.1.0"
-description = "FastAPI Feed Parser API"
-requires-python = ">=3.10"
 dependencies = [
     "fastapi",
     "uvicorn",
-    "pytest",
-    "httpx"
+    "httpx",
+    "feedparser",
+    "sqlalchemy",
+    "pydantic",
+    "python-jose[cryptography]",
+    "python-dotenv",
+    "passlib[bcrypt]",
+    "requests"
 ]

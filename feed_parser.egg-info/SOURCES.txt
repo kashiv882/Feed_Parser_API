@@ -2,6 +2,7 @@ pyproject.toml
 feed_parser.egg-info/PKG-INFO
 feed_parser.egg-info/SOURCES.txt
 feed_parser.egg-info/dependency_links.txt
+feed_parser.egg-info/requires.txt
 feed_parser.egg-info/top_level.txt
 routers/auth.py
 routers/feedparser.py
