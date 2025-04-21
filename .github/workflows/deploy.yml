@@ -6,32 +6,107 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+      - run: pip install -r requirements.txt
+      - run: pytest || true
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.12
+  deploy:
+    name: Deploy to Render
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Render via API
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.SERVICE_ID }}
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install flake8 pytest
 
-    - name: Lint with flake8
-      run: |
-        flake8 . --exit-zero  # Use --exit-zero to not block build for now
 
-    - name: Run tests with pytest
-      run: |
-        pytest || true  # Temporarily avoid breaking the build if no tests yet
 
-    - name: Trigger Render Deploy Hook
-      run: |
-        curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+# https://api.render.com/deploy/srv-cvvnii3uibrs73bkfc80?key=0uBdh5D-IIg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# name: CI/CD Pipeline for FastAPI App
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v4
+
+#     - name: Set up Python
+#       uses: actions/setup-python@v4
+#       with:
+#         python-version: 3.12
+
+#     - name: Install dependencies
+#       run: |
+#         python -m pip install --upgrade pip
+#         pip install -r requirements.txt
+#         pip install flake8 pytest
+
+#     - name: Lint with flake8
+#       run: |
+#         flake8 . --exit-zero  # Use --exit-zero to not block build for now
+
+#     - name: Run tests with pytest
+#       run: |
+#         pytest || true  # Temporarily avoid breaking the build if no tests yet
+
+#     - name: Trigger Render Deploy Hook
+#       run: |
+#         curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+
+
+
