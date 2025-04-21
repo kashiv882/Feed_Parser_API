@@ -40,7 +40,9 @@ def read_alpha():
 def read_pqr():
     return {"pqr": "xyz"}
 
-
+@route.get("/xyz")
+def read_xyz():
+    return {"xyz": "abc"}
 
 @route.post("/fetch/")
 def fetch_feeds(
