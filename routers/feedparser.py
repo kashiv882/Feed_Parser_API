@@ -35,6 +35,13 @@ def get_or_create_user(
 def read_alpha():
     return {"alpha": "beta"}
 
+
+@route.get("/pqr")
+def read_pqr():
+    return {"pqr": "xyz"}
+
+
+
 @route.post("/fetch/")
 def fetch_feeds(
     feed_input: FeedInput,
@@ -152,6 +159,7 @@ def delete_user_feed_data(
     db.commit()
 
     return {"message": "All feed data for the user has been deleted."}
+
 
 
 
