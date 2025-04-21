@@ -31,6 +31,10 @@ def get_or_create_user(
     return user
 
 
+@route.get("/abc")
+def read_alpha():
+    return {"alpha": "beta"}j
+
 @route.post("/fetch/")
 def fetch_feeds(
     feed_input: FeedInput,
