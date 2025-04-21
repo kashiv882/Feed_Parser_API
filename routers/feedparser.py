@@ -44,6 +44,9 @@ def read_pqr():
 def read_xyz():
     return {"xyz": "abc"}
 
+@route.get("/greet")
+def greet():
+    return {"message": "Hello, World!"}
 
 @route.get("/hello")
 def read_hello():
