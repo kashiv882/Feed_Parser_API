@@ -44,6 +44,12 @@ def read_pqr():
 def read_xyz():
     return {"xyz": "abc"}
 
+
+@route.get("/hello")
+def read_hello():
+    return {"hello": "world"}
+
+
 @route.post("/fetch/")
 def fetch_feeds(
     feed_input: FeedInput,
