@@ -30,7 +30,7 @@ jobs:
 
     - name: Run tests with pytest
       run: |
-        pytest || true  # Temporarily avoid breaking the build if no tests yet
+        pytest 
 
     - name: Trigger Render Deploy Hook
       run: |
