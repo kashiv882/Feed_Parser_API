@@ -134,6 +134,26 @@ def get_dashboard(
     return dashboard
 
 
+@route.delete("/delete/")
+def delete_user_feed_data(
+    db: Session = Depends(get_db),
+    user: User = Depends(get_or_create_user)
+):
+    # Fetch all sources for this user
+    sources = db.query(FeedSource).filter(FeedSource.user_id == user.id).all()
+
+    for source in sources:
+        # Delete all items linked to this source
+        db.query(FeedItem).filter(FeedItem.source_id == source.id).delete()
+
+    # Delete all sources for this user
+    db.query(FeedSource).filter(FeedSource.user_id == user.id).delete()
+
+    db.commit()
+
+    return {"message": "All feed data for the user has been deleted."}
+
+
 
 
 
